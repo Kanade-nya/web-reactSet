@@ -2,17 +2,30 @@
 import {useLocation, useParams} from "react-router-dom";
 // import {Prism} from "react-syntax-highlighter";
 // import {dark} from "react-syntax-highlighter/dist/cjs/styles/prism/index.js";
-import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
+import Markdown from 'https://esm.sh/react-markdown@9'
+// import remarkGfm from 'remark-gfm'
+// import rehypeRaw from "rehype-raw";
+
 // import {useEffect, useState} from "react";
 // import rehypeHighlight from "rehype-highlight";
 //
 // import 'highlight.js/styles/atom-one-dark.css'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 // @ts-ignore
-import {darcula} from 'react-syntax-highlighter/dist/esm/styles/prism'
+// import {darcula} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 
+// import remarkGfm from "remark-gfm";
+import {github, monoBlue} from "react-syntax-highlighter/src/styles/hljs/index.js";
 import remarkGfm from "remark-gfm";
+import {darcula} from "react-syntax-highlighter/dist/cjs/styles/prism/index.js";
+// import {monoBlue} from "react-syntax-highlighter/src/styles/hljs/index.js";
+
+
+// import './Page.module.css'
+// import styles1 from './Page.module.css'
+import styles2 from './Page-2.module.css'
 
 export default function Page(){
     let {state} = useLocation();
@@ -20,71 +33,43 @@ export default function Page(){
     console.log(state)
     const {id} = useParams();
     console.log(state)
-    const markdown = `A paragraph with *emphasis* and **strong importance**.
-       \n > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-       \n * Lists
-       \n * [ ] todo
-       \n * [x] done
-
-       \`\`\`python
-    a=10\`\`\`
-
-    \`\`\`javascript  let {state} = useLocation();\\n" +
-        //     "    state = state.arts_info\\n" +
-        //     "    console.log(state)\\n" +
-        //     "    const {id} = useParams();\\n" +
-        //     "    console.log(state)\`\`\`
-       \n A table:
-
-      \n | a | b |
-      \n  | - | - |\n
-      # This is title 1  \n
-
-         ## This is title 2 \n\\n### This is title 3\\n\\nAnd this is a paragraph\\n\\n**A paragraph with strong importance**\\n\\n*A block quote with ~strikethrough~*\n
-      `
-    // const markdown = "```javascript  let {state} = useLocation();\n" +
-    //     "    state = state.arts_info\n" +
-    //     "    console.log(state)\n" +
-    //     "    const {id} = useParams();\n" +
-    //     "    console.log(state)```"
-
-
-    // const [documentContent, setDocumentContent] = useState('')
-    // useEffect(() => {
-    //     setDocumentContent(state.content)
-    // }, [])
 
     return (
         <>
             <div className='w-4/5' style={{marginLeft: '10%',marginRight: '10%'}}>
                 <h1 className='text-3xl'>{state.title}</h1>
                 <p>文章id: {id}</p>
-
+                <pre >
+                    ???
+                </pre>
+                <div className={'prose  font-mono ' + styles2.outerDiv} >
                     <Markdown
                         children={state.content}
-                        // rehypePlugins={[rehypeHighlight]}
-                        // className='prose prose-zinc max-w-none dark:prose-invert'
+                        className='font-mono'
+                        remarkPlugins={[remarkGfm]}
+                        // rehypePlugins={[rehypeRaw]}
                         components={{
-                            code({node, inline, className, children, ...props}) {
+                            code(props) {
+                                const {children, className, node, ...rest} = props
                                 const match = /language-(\w+)/.exec(className || '')
-                                return !inline && match ? (
+                                return match ? (
                                     <SyntaxHighlighter
-                                        {...props}
-                                        children={String(children).replace(/\n$/, '')}
-                                        style={darcula}
-                                        language={match[1]}
+                                        {...rest}
+                                        showLineNumbers={true}
                                         PreTag="div"
-                                    >
-                                    </SyntaxHighlighter>
+                                        children={String(children).replace(/\n$/, '')}
+                                        language={match[1]}
+                                        style={darcula}
+                                    />
                                 ) : (
-                                    <code {...props} className={className}>
+                                    <code {...rest} className={className}>
                                         {children}
                                     </code>
                                 )
                             }
                         }}
-                    ></Markdown>
-
+                    />
+                </div>
                 this is article page
             </div>
         </>

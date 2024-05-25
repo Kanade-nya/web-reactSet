@@ -19,6 +19,14 @@ export default {
       }
     },
   },
-  plugins: [Typography],
+  plugins: [
+      Typography,
+      // require('@tailwindcss/typography'),
+  ],
+  // corePlugins: {
+  //   preflight: false
+  // }
 }
-
+// export const corePlugins = {
+//   preflight: false
+// }

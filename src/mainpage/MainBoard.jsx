@@ -4,6 +4,9 @@ import {useNavigate} from "react-router-dom";
 
 
 export default function MainBoard(){
+    let arts_from_public = new FileReader()
+    arts_from_public
+
 
     let articles = JSON.parse(JSON.stringify(json))
     let articles_lists = articles.map(article => {

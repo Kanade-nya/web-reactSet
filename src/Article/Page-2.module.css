@@ -1,0 +1,18 @@
+.outer-div{
+    padding: 20px;
+    width: 100%;
+    max-width: 100% !important;
+}
+pre{
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #ffffff;
+    div:nth-child(1){
+        padding: 8px !important;
+        border-radius: 6px;
+    }
+}
+
+code {
+    margin: 0 !important;
+}

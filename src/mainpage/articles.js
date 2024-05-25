@@ -18,21 +18,7 @@ let json = [
     "id": 3,
     "title" : 'tes3',
     "date": "2024-12-5",
-    "content": "[ESLint] 出现1-> this.props.setItem1()报错\n" +
-        "\n" +
-        "2-> this.props.setItem2报错\n" +
-        "\n" +
-        "这个错误一般会报错是 'setItem1'或者'setItem2' is missing in props validation(react/prop-types)\n" +
-        "\n" +
-        "此时，你需要引入 import PropTypes from 'prop-types'\n" +
-        "\n" +
-        "比如你的类是这样的=> let List = class List extent Component{}\n" +
-        "\n" +
-        "then=> const propTypes = {\n" +
-        "\n" +
-        "setItem1: PropTypes.func,\n" +
-        "\n" +
-        "setItem2: http://PropTypes.xxx（xxx是setItem2的属性）"
+    "content": "A paragraph with *emphasis* and **strong importance**.\n       \n > A block quote with ~strikethrough~ and a URL: https://reactjs.org.\n       \n * Lists\n       \n * [ ] todo\n       \n * [x] done"
   },
   {
     "id": 4,
@@ -58,6 +44,105 @@ let json = [
         "                                        PreTag=\"div\"\n" +
         "                                    >\n" +
         "                                    </SyntaxHighlighter>"
+  },
+  {
+    "id": 5,
+    title: "try",
+    date: "2024-12-5",
+    content: "## 最基础使用\n" +
+        "```javascript\n" +
+        "try {\n" +
+        "    lalal\n" +
+        "}catch (err){\n" +
+        "    console.log(err)\n" +
+        "}\n" +
+        "```\n" +
+        "> 注意：只能处理运行时错误，不能处理语法错误\n" +
+        "\n" +
+        "> 不能处理异步任务，要把try catch放在setTimeout里面\n" +
+        "## error对象的属性\n" +
+        "- message: 信息\n" +
+        "- name: 名字\n" +
+        "- stack: 发生时的调用栈\n" +
+        "\n" +
+        "## throw操作符\n" +
+        "可以自定义throw操作符定义错误\n" +
+        "```javascript\n" +
+        "try {\n" +
+        "    if(!data.name){\n" +
+        "        throw new SyntaxError('没有data')\n" +
+        "    }\n" +
+        "}catch (err){\n" +
+        "    console.log(err)\n" +
+        "}\n" +
+        "```\n" +
+        "\n" +
+        "## 再次捕获技术\n" +
+        "通常catch是为了捕获已知的错误，为了将未知的错误也捕获，可以在catch里面定义已知错误的类型。\n" +
+        "\n" +
+        "在外层重新捕获\n" +
+        "\n" +
+        "```javascript\n" +
+        "try {\n" +
+        "    try{\n" +
+        "        // err\n" +
+        "        // unexpected err\n" +
+        "    }catch (err){\n" +
+        "        if (err instanceof SyntaxError){\n" +
+        "            //\n" +
+        "        }else{\n" +
+        "            throw err\n" +
+        "        }\n" +
+        "    }\n" +
+        "}catch (e) { //在外层再次捕获未知Err\n" +
+        "    console.log(e)\n" +
+        "}\n" +
+        "```\n" +
+        "\n" +
+        "## finally\n" +
+        "finally 块中的数据无论如何都要执行，不论成功或者失败\n" +
+        "甚至try中有return 一样要执行finally\n" +
+        "```javascript\n" +
+        "function func() {\n" +
+        "  // 开始执行需要被完成的操作（比如测量）\n" +
+        "  try {\n" +
+        "    // ...\n" +
+        "  } finally {\n" +
+        "    // 完成前面我们需要完成的那件事，即使 try 中的执行失败了\n" +
+        "  }\n" +
+        "}\n" +
+        "```\n" +
+        "\n" +
+        "对于错误抛出，先执行try，然后finally，然后error\n" +
+        "\n"
+  },
+  {
+    id: 6,
+    title: "try",
+    date: "2024-12-5",
+    content: "## Autolink literals\n" +
+        "\n" +
+        "www.example.com, https://example.com, and contact@example.com.\n" +
+        "\n" +
+        "## Footnote\n" +
+        "\n" +
+        "A note[^1]\n" +
+        "\n" +
+        "[^1]: Big note.\n" +
+        "\n" +
+        "## Strikethrough\n" +
+        "\n" +
+        "~one~ or ~~two~~ tildes.\n" +
+        "\n" +
+        "## Table\n" +
+        "\n" +
+        "| a | b  |  c |  d  |\n" +
+        "| - | :- | -: | :-: |\n" +
+        "\n" +
+        "## Tasklist\n" +
+        "\n" +
+        "* [ ] to do\n" +
+        "* [x] done"
   }
 ]
 export default json
